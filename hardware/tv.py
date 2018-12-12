@@ -27,10 +27,7 @@ class TV_Controller:
         self.enabled = False
 
     def set_brightness(self, brightness):
-        # Set the brightness 0 to 100%
+        """Set the brightness (0 to 100%)"""
         brightness = max(0, min(brightness, 100))
-        # print("Setting brightness to", brightness)
-	# 100 = off, 0 = full on
+        # 100 = off, 0 = full on
         self.pwm.ChangeDutyCycle(100 - brightness)
-
-# TODO: Cleanup
