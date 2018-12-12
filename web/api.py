@@ -1,8 +1,11 @@
 import flask
-from hardware import tv
+import socket
 import time
-tv = tv.TV_Controller()
 app = flask.Flask(__name__)
+
+def hw_send(msg):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.sendto(msg.encode(), ('127.0.0.1', 8900))
 
 @app.route('/')
 def index():
@@ -11,28 +14,28 @@ def index():
 @app.route('/api/status')
 def api_status():
     return flask.jsonify({
-        'enabled': tv.enabled,
+        # 'enabled': tv.enabled,
     })
 
 @app.route('/api/enable')
 def api_enable():
-    tv.enable_system()
+    hw_send('e')
     return ''
 
 @app.route('/api/disable')
 def api_disable():
-    tv.disable_system()
+    hw_send('d')
     return ''
 
 @app.route('/api/brightness/<int:b>')
 def api_brightness(b):
-    tv.set_brightness(b)
+    hw_send(str(b))
     return ''
 
 @app.route('/api/gradient/<int:a>/<int:b>')
 def api_gradient(a, b):
     for i in range(a, b+1, 1 if a < b else -1):
-        tv.set_brightness(i)
+        hw_send(str(i))
         time.sleep(0.01)
     return ''
 
