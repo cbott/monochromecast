@@ -34,7 +34,8 @@ def api_brightness(b):
 
 @app.route('/api/gradient/<int:a>/<int:b>')
 def api_gradient(a, b):
-    for i in range(a, b+1, 1 if a < b else -1):
+    dir = 1 if a < b else -1
+    for i in range(a, b + dir, dir):
         hw_send(str(i))
         time.sleep(0.01)
     return ''
