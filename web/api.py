@@ -1,7 +1,7 @@
 import flask
-import hardware
+from hardware import tv
 import time
-tv = hardware.TV_Controller()
+tv = tv.TV_Controller()
 app = flask.Flask(__name__)
 
 @app.route('/')
