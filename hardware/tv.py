@@ -12,7 +12,8 @@ class TV_Controller:
         gpio.setup(DIM_PIN, gpio.OUT)
         self.pwm = gpio.PWM(DIM_PIN, PWM_FREQ)
         self.pwm.start(50)
-        self.enabled = False
+        self.set_brightness(1)
+        self.enable_system()
 
     def __del__(self):
         self.disable_system()
