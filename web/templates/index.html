@@ -9,7 +9,6 @@
     <button onclick="fetch('/api/disable')">Disable</button>
     <button onclick="fetch('/api/gradient/0/100')">Up</button>
     <button onclick="fetch('/api/gradient/100/0')">Down</button>
-    <button onclick="seizure()">Seizure</button>
     <br><br>
     <input type="range" min="0" max="100" step="1" oninput="fetch('/api/brightness/' + this.value)">
 </body>
