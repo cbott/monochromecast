@@ -1,10 +1,16 @@
 # Note: Requires root!
 import wiringpi
 
+PS_EN_PIN = 0  # Wiring Pi Pin = BCM GPIO 17 = Physical pin 11
+DIM_PIN = 1  # Wiring Pi Pin = BCM GPIO 18 = Physical pin 12
+
+MODE_GPIO = 1
+MODE_PWM = 2
+
 wiringpi.wiringPiSetup()
-wiringpi.pinMode(1, 2)  # Physical pin 12, mode 2 = PWM I guess
-wiringpi.pinMode(0, 1)  # Physical pin 11, mode 1 = digital output maybe
-wiringpi.digitalWrite(0, 1)  # Turn on backlight
+wiringpi.pinMode(PW_EN_PIN, wiringpi.OUTPUT)  # Physical pin 11, mode 1 = digital output maybe
+wiringpi.pinMode(DIM_PIN, wiringpi.PWM_OUTPUT)  # Physical pin 12, mode 2 = PWM I guess
+wiringpi.digitalWrite(PW_EN_PIN, 1)  # Turn on backlight
 
 wiringpi.pwmSetMode(wiringpi.PWM_MODE_MS)  # Mark:space mode, not really sure
 wiringpi.pwmSetClock(2)  # Range [2, 4095] maybe includes 1 also?
