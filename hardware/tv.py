@@ -10,8 +10,8 @@ class TV_Controller:
     PWM_CLOCK = 64
     def __init__(self):
         wiringpi.wiringPiSetup()  # initialize wiringpi with default pin numbering
-        wiringpi.pinMode(TV_Controller.PW_EN_PIN, wiringpi.OUTPUT)  #
-        wiringpi.pinMode(TV_Controller.DIM_PIN, wiringpi.PWM_OUTPUT)  #
+        wiringpi.pinMode(TV_Controller.PW_EN_PIN, wiringpi.OUTPUT)
+        wiringpi.pinMode(TV_Controller.DIM_PIN, wiringpi.PWM_OUTPUT)
 
         wiringpi.pwmSetMode(wiringpi.PWM_MODE_MS)  # Mark:space mode, unclear what this is
         wiringpi.pwmSetRange(TV_Controller.PWM_RANGE)
@@ -35,8 +35,8 @@ class TV_Controller:
         wiringpi.digitalWrite(TV_Controller.PW_EN_PIN, False)
         self.enabled = False
 
-    def set_brightness(self, brightness):
-        """Set the brightness (0 to 100%)"""
+    def set_brightness(self, brightness: float):
+        """Set the brightness 0 to 100%"""
         brightness = max(0, min(brightness, 100))  # constrain inputs
 
         min_command = 0
