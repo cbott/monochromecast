@@ -27,12 +27,12 @@ class TV_Controller:
 
     def enable_system(self):
         """ Send an enable signal to the power supply """
-        wiringpi.digitalWrite(PW_EN_PIN, True)
+        wiringpi.digitalWrite(TV_Controller.PW_EN_PIN, True)
         self.enabled = True
 
     def disable_system(self):
         """ Stop sending enable signal to the power supply """
-        wiringpi.digitalWrite(PW_EN_PIN, False)
+        wiringpi.digitalWrite(TV_Controller.PW_EN_PIN, False)
         self.enabled = False
 
     def set_brightness(self, brightness):
@@ -44,7 +44,7 @@ class TV_Controller:
 
         command = max_command - (brightness / 100 * (max_command - min_command))
         # max_command = off, min_command = full on
-        wiringpi.pwmWrite(int(command))
+        wiringpi.pwmWrite(TV_Controller.DIM_PIN, int(command))
 
 
 # How hardware PWM works
