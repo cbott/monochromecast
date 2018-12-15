@@ -1,4 +1,4 @@
 #!/bin/sh
 cd "$(dirname "$0")"
 tmux kill-session -t run-hw-server 2>/dev/null
-tmux new -s run-hw-server -d 'python3 server.py'
+tmux new -s run-hw-server -d 'sudo python3 server.py'
