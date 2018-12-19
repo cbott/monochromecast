@@ -38,6 +38,7 @@ class TV_Controller:
     def set_brightness(self, brightness: float):
         """Set the brightness 0 to 100%"""
         brightness = max(0, min(brightness, 100))  # constrain inputs
+        brightness *= brightness / 100  # square and renormalize
 
         min_command = 0
         max_command = TV_Controller.PWM_RANGE - 1  # For hardware reasons, PWM_RANGE - 1 is fully off
